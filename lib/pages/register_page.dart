@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:humming/auth/auth_service.dart';
 import 'package:humming/components/my_button.dart';
 import 'package:humming/components/my_textfield.dart';
 
@@ -9,8 +10,27 @@ class RegisterPage extends StatelessWidget {
   final TextEditingController _pwController = TextEditingController();
   final TextEditingController _confirmpwController = TextEditingController();
 
+  void register(BuildContext context) {
+    final _auth = AuthService();
+    if(_pwController.text == _confirmpwController.text){
+      try{
+        _auth.signUpWithEmailPassword(
+      _emailController.text, 
+      _pwController.text
+       );
+      } catch (e) {
+         showDialog(
+        context: context, 
+        builder: (context) => const AlertDialog(
+        title: Text(
+            'Passwords dont match!'
+            ),
+          ),
+        );
+      }
+    }
+  }
 
-  void register(){}
   final void Function()? onTap;
 
   @override
@@ -36,34 +56,28 @@ class RegisterPage extends StatelessWidget {
             ),
             const SizedBox(height: 25),
             MyTextfield(
-              hintText: 'Email', 
+              hintText: 'Email',
               obscureText: false,
               controller: _emailController,
             ),
             const SizedBox(height: 10),
             MyTextfield(
-              hintText: 'Password', 
+              hintText: 'Password',
               obscureText: false,
               controller: _pwController,
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            const SizedBox(height: 10),
             MyTextfield(
-              hintText: 'Confirm Password', 
+              hintText: 'Confirm Password',
               obscureText: false,
               controller: _confirmpwController,
             ),
-            const SizedBox(
-              height: 25,
-            ),
+            const SizedBox(height: 25),
             MyButton(
-              text: 'Register',
-              onTap: register,
+              text: 'Register', 
+              onTap: () => register(context),
             ),
-             const SizedBox(
-              height: 25,
-            ),
+            const SizedBox(height: 25),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
