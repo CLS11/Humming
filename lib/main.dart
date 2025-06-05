@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:humming/auth/login_or_register.dart';
+import 'package:humming/auth/auth_gate.dart';
 import 'package:humming/firebase_options.dart';
 import 'package:humming/themes/light_theme.dart';
 
@@ -19,7 +19,7 @@ class Humming extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginOrRegister(),
+      home: const AuthGate(),
       theme: lightMode,
     );
   }
