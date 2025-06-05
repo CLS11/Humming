@@ -4,6 +4,7 @@ class AuthService {
   //Instance of authentication
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+
   //Sign in
   Future<UserCredential> signInWithEmailPassword(
     String email,
