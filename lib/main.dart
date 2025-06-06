@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:humming/auth/auth_gate.dart';
+import 'package:humming/services/auth/auth_gate.dart';
 import 'package:humming/firebase_options.dart';
 import 'package:humming/themes/light_theme.dart';
 

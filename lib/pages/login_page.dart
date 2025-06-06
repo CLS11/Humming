@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:humming/auth/auth_service.dart';
+import 'package:humming/services/auth/auth_service.dart';
 import 'package:humming/components/my_button.dart';
 import 'package:humming/components/my_textfield.dart';
 
