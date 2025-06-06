@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:humming/auth/login_or_register.dart';
+import 'package:humming/services/auth/login_or_register.dart';
 import 'package:humming/pages/home_page.dart';
 
 class AuthGate extends StatelessWidget {
