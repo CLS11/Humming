@@ -30,15 +30,13 @@ class HomePage extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Text('Loading...');
         }
-        final users =
-            List<Map<String, String>>.from(snapshot.data!);
+        final users = List<Map<String, String>>.from(snapshot.data!);
         return ListView(
           children:
-                users
-                  .map<Widget>((userData) => _buildUserListItem(
-                    userData, context
-                  ),
-                )
+              users
+                  .map<Widget>(
+                    (userData) => _buildUserListItem(userData, context),
+                  )
                   .toList(),
         );
       },
@@ -49,18 +47,25 @@ class HomePage extends StatelessWidget {
     Map<String, String> userData,
     BuildContext context,
   ) {
-    return UserTile(
-      text: userData['email'] ?? 'No email',
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ChatPage(
-              receiverEmail: userData['email'] ?? 'No email',
+    if (userData['email'] != _authService.getCurrentUser()!.email) {
+      return UserTile(
+        text: userData['email'] ?? 'No email',
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder:
+                  (context) =>
+                      ChatPage(
+                        receiverEmail: userData['email'] ?? 'No email',
+                        receiverID: userData['uid'] ?? 'No ID',
+                      ),
             ),
-          ),
-        );
-      },
-    );
+          );
+        },
+      );
+    } else {
+      return Container();
+    }
   }
 }
